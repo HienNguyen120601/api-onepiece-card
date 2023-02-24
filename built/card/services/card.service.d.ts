@@ -7,6 +7,9 @@ export declare class CardService {
     constructor(cardPostRepos: Repository<CardPostEntity>);
     createPost(cardPost: CardPost): Observable<CardPost>;
     findAllCard(): Observable<CardPost[]>;
+    findCardById(id: number): Observable<CardPost>;
+    findCardByColor(color: string): Observable<CardPost[]>;
+    findCardByName(name: string): Observable<CardPost[]>;
     updateCard(id: number, cardPost: CardPost): Observable<UpdateResult>;
     deleteCart(id: number): Observable<DeleteResult>;
 }

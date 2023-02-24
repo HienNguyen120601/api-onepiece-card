@@ -28,6 +28,16 @@ let CardService = class CardService {
     findAllCard() {
         return (0, rxjs_1.from)(this.cardPostRepos.find());
     }
+    findCardById(id) {
+        return (0, rxjs_1.from)(this.cardPostRepos.findOneBy({ id: id }));
+    }
+    findCardByColor(color) {
+        return (0, rxjs_1.from)(this.cardPostRepos.findBy({ color: color }));
+    }
+    findCardByName(name) {
+        const temp = `name ilike '%${name}%'`;
+        return (0, rxjs_1.from)(this.cardPostRepos.createQueryBuilder().where(temp).getMany());
+    }
     updateCard(id, cardPost) {
         return (0, rxjs_1.from)(this.cardPostRepos.update(id, cardPost));
     }

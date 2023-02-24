@@ -9,22 +9,29 @@ import { Observable, from } from 'rxjs';
 export class CardService {
     constructor(
         @InjectRepository(CardPostEntity)
-        private readonly cardPostRepos:Repository<CardPostEntity>
-    ){
+        private readonly cardPostRepos: Repository<CardPostEntity>
+    ) {
     }
-    createPost(cardPost:CardPost):Observable<CardPost>
-    {
+    createPost(cardPost: CardPost): Observable<CardPost> {
         return from(this.cardPostRepos.save(cardPost))
     }
-    findAllCard():Observable<CardPost[]>
-    {
+    findAllCard(): Observable<CardPost[]> {
         return from(this.cardPostRepos.find());
     }
-    updateCard(id:number,cardPost:CardPost):Observable<UpdateResult>
-    {
-        return from (this.cardPostRepos.update(id,cardPost));
+    findCardById(id: number): Observable<CardPost> {
+        return from(this.cardPostRepos.findOneBy({ id: id }))
     }
-    deleteCart(id:number) :Observable<DeleteResult>{
+    findCardByColor(color: string): Observable<CardPost[]> {
+        return from(this.cardPostRepos.findBy({ color: color }))
+    }
+    findCardByName(name: string): Observable<CardPost[]> {
+        const temp = `name ilike '%${name}%'`
+        return from(this.cardPostRepos.createQueryBuilder().where(temp).getMany())
+    }
+    updateCard(id: number, cardPost: CardPost): Observable<UpdateResult> {
+        return from(this.cardPostRepos.update(id, cardPost));
+    }
+    deleteCart(id: number): Observable<DeleteResult> {
         return from(this.cardPostRepos.delete(id));
     }
 }

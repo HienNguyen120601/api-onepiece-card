@@ -26,6 +26,15 @@ let CardController = class CardController {
     findAll() {
         return this.cardService.findAllCard();
     }
+    findById(id) {
+        return this.cardService.findCardById(id);
+    }
+    findByColor(color) {
+        return this.cardService.findCardByColor(color);
+    }
+    findByName(name) {
+        return this.cardService.findCardByName(name);
+    }
     update(cardPost, id) {
         return this.cardService.updateCard(id, cardPost);
     }
@@ -47,6 +56,27 @@ __decorate([
     __metadata("design:returntype", rxjs_1.Observable)
 ], CardController.prototype, "findAll", null);
 __decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", rxjs_1.Observable)
+], CardController.prototype, "findById", null);
+__decorate([
+    (0, common_1.Get)('color/:color'),
+    __param(0, (0, common_1.Param)('color')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", rxjs_1.Observable)
+], CardController.prototype, "findByColor", null);
+__decorate([
+    (0, common_1.Get)('name/:name'),
+    __param(0, (0, common_1.Param)('name')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", rxjs_1.Observable)
+], CardController.prototype, "findByName", null);
+__decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Param)('id')),
@@ -56,7 +86,7 @@ __decorate([
 ], CardController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)("id")),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", rxjs_1.Observable)
