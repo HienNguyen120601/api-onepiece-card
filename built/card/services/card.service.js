@@ -25,6 +25,9 @@ let CardService = class CardService {
     createPost(cardPost) {
         return (0, rxjs_1.from)(this.cardPostRepos.save(cardPost));
     }
+    findAllCardPagination(limit, page) {
+        return (0, rxjs_1.from)(this.cardPostRepos.createQueryBuilder().orderBy("id").offset(limit * (page - 1)).limit(limit).getMany());
+    }
     findAllCard() {
         return (0, rxjs_1.from)(this.cardPostRepos.find());
     }
@@ -35,12 +38,12 @@ let CardService = class CardService {
         return (0, rxjs_1.from)(this.cardPostRepos.findBy({ color: color }));
     }
     findCardByName(name) {
-        const temp = `name ilike '%${name}%'`;
-        return (0, rxjs_1.from)(this.cardPostRepos.createQueryBuilder().where(temp).getMany());
+        const sql = `name ilike '%${name}%'`;
+        return (0, rxjs_1.from)(this.cardPostRepos.createQueryBuilder().where(sql).getMany());
     }
     findCardByMulti(name, color) {
-        const temp = `name ilike '%${name}%' and color='${color}'`;
-        return (0, rxjs_1.from)(this.cardPostRepos.createQueryBuilder().where(temp).getMany());
+        const sql = `name ilike '%${name}%' and color='${color}'`;
+        return (0, rxjs_1.from)(this.cardPostRepos.createQueryBuilder().where(sql).getMany());
     }
     updateCard(id, cardPost) {
         return (0, rxjs_1.from)(this.cardPostRepos.update(id, cardPost));

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CardPostEntity } from './models/post.entity';
@@ -5,10 +6,10 @@ import { CardController } from './controllers/card.controller';
 import { CardService } from './services/card.service';
 
 @Module({
-  imports:[
+  imports: [
     TypeOrmModule.forFeature([CardPostEntity])
   ],
   providers: [CardService],
-  controllers:[CardController]
+  controllers: [CardController]
 })
-export class CardModule {}
+export class CardModule { }

@@ -6,6 +6,7 @@ export declare class CardService {
     private readonly cardPostRepos;
     constructor(cardPostRepos: Repository<CardPostEntity>);
     createPost(cardPost: CardPost): Observable<CardPost>;
+    findAllCardPagination(limit: number, page: number): Observable<CardPost[]>;
     findAllCard(): Observable<CardPost[]>;
     findCardById(id: number): Observable<CardPost>;
     findCardByColor(color: string): Observable<CardPost[]>;

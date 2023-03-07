@@ -16,6 +16,11 @@ export class CardService {
     createPost(cardPost: CardPost): Observable<CardPost> {
         return from(this.cardPostRepos.save(cardPost))
     }
+    findAllCardPagination(limit: number, page: number): Observable<CardPost[]> {
+        // return from(this.cardPostRepos.find());
+
+        return from(this.cardPostRepos.createQueryBuilder().orderBy("id").offset(limit * (page - 1)).limit(limit).getMany())
+    }
     findAllCard(): Observable<CardPost[]> {
         return from(this.cardPostRepos.find());
     }
@@ -26,12 +31,12 @@ export class CardService {
         return from(this.cardPostRepos.findBy({ color: color }))
     }
     findCardByName(name: string): Observable<CardPost[]> {
-        const temp = `name ilike '%${name}%'`
-        return from(this.cardPostRepos.createQueryBuilder().where(temp).getMany())
+        const sql = `name ilike '%${name}%'`
+        return from(this.cardPostRepos.createQueryBuilder().where(sql).getMany())
     }
     findCardByMulti(name: string, color: string): Observable<CardPost[]> {
-        const temp = `name ilike '%${name}%' and color='${color}'`
-        return from(this.cardPostRepos.createQueryBuilder().where(temp).getMany())
+        const sql = `name ilike '%${name}%' and color='${color}'`
+        return from(this.cardPostRepos.createQueryBuilder().where(sql).getMany())
     }
     updateCard(id: number, cardPost: CardPost): Observable<UpdateResult> {
         return from(this.cardPostRepos.update(id, cardPost));

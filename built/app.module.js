@@ -23,11 +23,11 @@ AppModule = __decorate([
                 type: 'postgres',
                 host: "127.0.0.1",
                 port: 5432,
-                username: "openpg",
-                password: "openpgpwd",
+                username: "postgres",
+                password: "hiennguyen123",
                 database: "onepiece",
                 autoLoadEntities: true,
-                synchronize: true
+                synchronize: true,
             }),
             card_module_1.CardModule
         ],

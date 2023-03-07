@@ -10,14 +10,22 @@ import { CardModule } from './card/card.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
+
       type: 'postgres',
       host: "127.0.0.1",
       port: 5432,
-      username: "openpg",
-      password: "openpgpwd",
+      username: "postgres",
+      password: "hiennguyen123",
       database: "onepiece",
+      // type: "postgres",
+      // host: process.env.HOST,
+      // port: 5432,
+      // username: process.env.USERNAME,
+      // password: process.env.PASSWORD,
+      // database: process.env.DATABASE,
       autoLoadEntities: true,
-      synchronize: true
+      synchronize: true,
+
     }),
     CardModule
   ],
